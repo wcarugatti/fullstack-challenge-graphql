@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres_local:
+    image: postgres:14.1-alpine
+    env_file:
+      - ./postgres/.env
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./backend/src/infra/postgres/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_local:/var/lib/postgresql/data
+volumes:
+  db_local:
