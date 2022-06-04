@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS "customer" (
   "last_name" VARCHAR(255),
   "role" VARCHAR(255),
   "email" VARCHAR(255),
-  "created_at" VARCHAR(255),
-  "updated_at" VARCHAR(255),
-  "deleted_at" VARCHAR(255),
+  "created_at" DATE,
+  "updated_at" DATE,
+  "deleted_at" DATE,
   PRIMARY KEY ("id")
 );
 
@@ -29,10 +29,10 @@ CREATE TABLE IF NOT EXISTS "subscription" (
   "customer_id" VARCHAR(255),
   "plan_id" VARCHAR(255),
   "payment_gateway_id" VARCHAR(255),
-  "created_at" VARCHAR(255),
-  "updated_at" VARCHAR(255),
-  "ends_at" VARCHAR(255),
-  "deleted_at" VARCHAR(255),
+  "created_at" DATE,
+  "updated_at" DATE,
+  "ends_at" DATE,
+  "deleted_at" DATE,
   PRIMARY KEY (
     "id",
     "customer_id",
