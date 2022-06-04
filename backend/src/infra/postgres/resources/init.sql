@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS "subscription" (
   "payment_gateway_id" VARCHAR(255),
   "created_at" VARCHAR(255),
   "updated_at" VARCHAR(255),
+  "ends_at" VARCHAR(255),
   "deleted_at" VARCHAR(255),
   PRIMARY KEY (
     "id",
