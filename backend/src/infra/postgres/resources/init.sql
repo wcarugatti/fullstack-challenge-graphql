@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "customer" (
+CREATE TABLE IF NOT EXISTS "customers" (
   "id" VARCHAR(255),
   "first_name" VARCHAR(255),
   "last_name" VARCHAR(255),
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "customer" (
   PRIMARY KEY ("id")
 );
 
-CREATE TABLE IF NOT EXISTS "plan" (
+CREATE TABLE IF NOT EXISTS "plans" (
   "id" VARCHAR(255),
   "name" VARCHAR(255),
   "bylling_cycle" INTEGER,
@@ -18,13 +18,13 @@ CREATE TABLE IF NOT EXISTS "plan" (
   PRIMARY KEY ("id")
 );
 
-CREATE TABLE IF NOT EXISTS "payment_gateway" (
+CREATE TABLE IF NOT EXISTS "payment_gateways" (
   "id" VARCHAR(255),
   "name" VARCHAR(255),
   PRIMARY KEY ("id")
 );
 
-CREATE TABLE IF NOT EXISTS "subscription" (
+CREATE TABLE IF NOT EXISTS "subscriptions" (
   "id" VARCHAR(255),
   "customer_id" VARCHAR(255),
   "plan_id" VARCHAR(255),
@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS "subscription" (
     "plan_id",
     "payment_gateway_id"
   ),
-  FOREIGN KEY ("customer_id") REFERENCES "customer" (id),
-  FOREIGN KEY ("plan_id") REFERENCES "plan" (id),
-  FOREIGN KEY ("payment_gateway_id") REFERENCES "payment_gateway" (id)
+  FOREIGN KEY ("customer_id") REFERENCES "customers" (id),
+  FOREIGN KEY ("plan_id") REFERENCES "plans" (id),
+  FOREIGN KEY ("payment_gateway_id") REFERENCES "payment_gateways" (id)
 );
 
 INSERT INTO
-  "plan"
+  "plans"
 VALUES
   ('plan1_1', 'The Creative', 1, 29.00),
   ('plan1_2', 'The Creative', 2, 278.00),
@@ -55,7 +55,7 @@ VALUES
   ('plan3_2', 'Super Star', 2, 3705.00)
 
 INSERT INTO
-  "payment_gateway"
+  "payment_gateways"
 VALUES
   ('pg1', 'Stripe'),
   ('pg2', 'PayPal')
