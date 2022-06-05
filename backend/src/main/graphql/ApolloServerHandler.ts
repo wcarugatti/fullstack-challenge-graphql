@@ -2,11 +2,12 @@ import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import { Express } from "express";
 import http from "http";
+import { DocumentNode } from "graphql";
 
 export class ApolloServerHandler {
   constructor(private app: Express) {}
 
-  async setupServer(typeDefs, resolvers, port: number) {
+  async setupServer(typeDefs: DocumentNode[], resolvers: any[], port: number) {
     const httpServer = http.createServer(this.app);
     const server = new ApolloServer({
       typeDefs,
