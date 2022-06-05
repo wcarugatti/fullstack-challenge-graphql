@@ -22,7 +22,12 @@ export default gql`
       email: String
       planId: String
       paymentGatewayId: String
-    ): Customer
+    ): String
+    removeCustomer(id: ID!): removedCustomer
+  }
+
+  type removedCustomer {
+    ok: Boolean
   }
 
   type Customer {

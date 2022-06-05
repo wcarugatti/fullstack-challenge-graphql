@@ -1,6 +1,7 @@
 import { ICustomer } from "../../../entities/ICustomer";
 import { ICustomerRepository } from "../../repositoryProtocols/ICustomerRepository";
 import Customer from "../models/Customer.model";
+import Subscription from "../models/Subscription.model";
 
 class CustomerRepositoryPostgres implements ICustomerRepository {
   async findCustomerById(id: string): Promise<Customer> {
@@ -34,6 +35,23 @@ class CustomerRepositoryPostgres implements ICustomerRepository {
     }
     await customer.update({ firstName, lastName, role, email });
     return customer;
+  }
+
+  async removeCustomer(id: string): Promise<boolean> {
+    const destroyResult = await Customer.destroy({
+      where: {
+        id,
+      },
+    });
+    if (destroyResult > 0) {
+      await Subscription.destroy({
+        where: {
+          customerId: id,
+        },
+      });
+      return true;
+    }
+    return false;
   }
 }
 

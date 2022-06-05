@@ -15,4 +15,5 @@ export interface ICustomerRepository {
     role,
     email,
   }: Partial<ICustomer>): Promise<ICustomer | null>;
+  removeCustomer(id: string): Promise<boolean>;
 }

@@ -53,6 +53,14 @@ export default {
       }
       return customer;
     },
+    removeCustomer: async (_, { id }): Promise<{ ok: boolean }> => {
+      try {
+        const result = await CustomerRepositoryPostgres.removeCustomer(id);
+        return { ok: result };
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
   },
   Customer: {
     subscription: async (parent) => {
