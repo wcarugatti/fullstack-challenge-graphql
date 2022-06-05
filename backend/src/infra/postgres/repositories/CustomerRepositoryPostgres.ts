@@ -1,8 +1,8 @@
+import { Op } from "sequelize";
 import { ICustomer } from "../../../entities/ICustomer";
 import { ICustomerRepository } from "../../repositoryProtocols/ICustomerRepository";
 import Customer from "../models/Customer.model";
 import Subscription from "../models/Subscription.model";
-
 class CustomerRepositoryPostgres implements ICustomerRepository {
   async findCustomerById(id: string): Promise<Customer> {
     return await Customer.findByPk(id);
@@ -52,6 +52,20 @@ class CustomerRepositoryPostgres implements ICustomerRepository {
       return true;
     }
     return false;
+  }
+
+  async findCustomersByEmailAndName(searchInput: string): Promise<Customer[]> {
+    const customers = await Customer.findAll({
+      where: {
+        [Op.or]: [
+          { firstName: { [Op.like]: `${searchInput}%` } },
+          { lastName: { [Op.like]: `${searchInput}%` } },
+          { email: { [Op.like]: `${searchInput}%` } },
+        ],
+      },
+    });
+
+    return customers;
   }
 }
 

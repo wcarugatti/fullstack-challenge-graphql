@@ -16,4 +16,5 @@ export interface ICustomerRepository {
     email,
   }: Partial<ICustomer>): Promise<ICustomer | null>;
   removeCustomer(id: string): Promise<boolean>;
+  findCustomersByEmailAndName(searchInput: string): Promise<ICustomer[]>;
 }

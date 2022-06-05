@@ -7,6 +7,11 @@ export default {
     getCustomer: async (_, { id }): Promise<ICustomer> => {
       return await CustomerRepositoryPostgres.findCustomerById(id);
     },
+    searchCustomers: async (_, { searchInput }): Promise<ICustomer[]> => {
+      return await CustomerRepositoryPostgres.findCustomersByEmailAndName(
+        searchInput,
+      );
+    },
   },
   Mutation: {
     createCustomer: async (
