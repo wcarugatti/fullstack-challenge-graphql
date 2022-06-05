@@ -5,16 +5,20 @@ import {
   PrimaryKey,
   ForeignKey,
   BelongsTo,
-  DataType
+  DataType,
+  Default,
 } from "sequelize-typescript";
+import { ISubscription } from "../../../entities/ISubscription";
 import Customer from "./Customer.model";
 import PaymentGateway from "./PaymentGateway.model";
 import Plan from "./Plan.model";
 
 @Table({
   underscored: true,
+  paranoid: true,
 })
-class Subscription extends Model {
+class Subscription extends Model implements ISubscription {
+  @Default(DataType.UUIDV4)
   @PrimaryKey
   @Column
   id: string;
@@ -51,7 +55,6 @@ class Subscription extends Model {
 
   @BelongsTo(() => PaymentGateway)
   paymentGateway: PaymentGateway;
-
 }
 
 export default Subscription;

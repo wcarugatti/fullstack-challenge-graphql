@@ -5,13 +5,14 @@ import {
   PrimaryKey,
   HasMany,
   DataType,
-  Default
+  Default,
 } from "sequelize-typescript";
 import Subscription from "./Subscription.model";
 import { ICustomer } from "./../../../entities/ICustomer";
 
 @Table({
   underscored: true,
+  paranoid: true,
 })
 class Customer extends Model implements ICustomer {
   @Default(DataType.UUIDV4)
