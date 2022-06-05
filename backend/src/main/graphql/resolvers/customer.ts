@@ -1,9 +1,9 @@
-import CustomerRepository from "../../../infra/postgres/repositories/CustomerRepository";
-import { ICustomer } from "./../../../entities/ICustomer";
+import CustomerRepositoryPostgres from "../../../infra/postgres/repositories/CustomerRepositoryPostgres";
+import { ICustomer } from "../../../entities/ICustomer";
 export default {
   Query: {
     getCustomer: async (_, { id }): Promise<ICustomer> => {
-      return await CustomerRepository.findCustomerById(id);
+      return await CustomerRepositoryPostgres.findCustomerById(id);
     },
   },
   Mutation: {
@@ -11,7 +11,7 @@ export default {
       _,
       { firstName, lastName, role, email },
     ): Promise<ICustomer> => {
-      const customer = await CustomerRepository.createCustomer({
+      const customer = await CustomerRepositoryPostgres.createCustomer({
         firstName,
         lastName,
         role,
@@ -20,4 +20,4 @@ export default {
       return customer;
     },
   },
-};
+}

@@ -1,3 +1,5 @@
-import base from "./base";
+import customer from "./customer";
+import paymentGateway from "./paymentGateway";
+import plan from "./plan";
 
-export default [base]
+export default [customer, paymentGateway, plan];
