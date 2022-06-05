@@ -11,8 +11,8 @@ export default gql`
       lastName: String!
       role: String!
       email: String!
-      planId: String!
-      paymentGatewayId: String!
+      # planId: String!
+      # paymentGatewayId: String!
     ): Customer
   }
 
@@ -26,5 +26,6 @@ export default gql`
     updatedAt: String
     endsAt: String
     deletedAt: String
+    # subscription: Subscription
   }
 `;
