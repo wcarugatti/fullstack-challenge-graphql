@@ -1,5 +1,7 @@
 import CustomerRepositoryPostgres from "../../../infra/postgres/repositories/CustomerRepositoryPostgres";
 import { ICustomer } from "../../../entities/ICustomer";
+import SubscriptionRepositoryPostgres from "../../../infra/postgres/repositories/SubscriptionRepositoryPostgres";
+import { ApolloError } from "apollo-server-core";
 export default {
   Query: {
     getCustomer: async (_, { id }): Promise<ICustomer> => {
@@ -9,7 +11,7 @@ export default {
   Mutation: {
     createCustomer: async (
       _,
-      { firstName, lastName, role, email },
+      { firstName, lastName, role, email, planId, paymentGatewayId },
     ): Promise<ICustomer> => {
       const customer = await CustomerRepositoryPostgres.createCustomer({
         firstName,
@@ -17,7 +19,46 @@ export default {
         role,
         email,
       });
+      if (planId && paymentGatewayId) {
+        await SubscriptionRepositoryPostgres.createSubscription({
+          customerId: customer.id,
+          planId,
+          paymentGatewayId,
+        });
+      }
+      return customer;
+    },
+    updateCustomer: async (
+      _,
+      { id, firstName, lastName, role, email, planId, paymentGatewayId },
+    ): Promise<ICustomer> => {
+      const customer = await CustomerRepositoryPostgres.updateCustomer({
+        id,
+        firstName,
+        lastName,
+        role,
+        email,
+      });
+
+      if (!customer) {
+        throw new ApolloError("Customer not found");
+      }
+
+      if (planId || paymentGatewayId) {
+        await SubscriptionRepositoryPostgres.updateSubscription({
+          customerId: customer.id,
+          planId,
+          paymentGatewayId,
+        });
+      }
       return customer;
     },
   },
-}
+  Customer: {
+    subscription: async (parent) => {
+      return await SubscriptionRepositoryPostgres.findSubscriptionByCustomer(
+        parent.id,
+      );
+    },
+  },
+};

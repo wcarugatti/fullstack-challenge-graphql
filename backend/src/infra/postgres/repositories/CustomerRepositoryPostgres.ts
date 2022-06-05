@@ -3,7 +3,7 @@ import { ICustomerRepository } from "../../repositoryProtocols/ICustomerReposito
 import Customer from "../models/Customer.model";
 
 class CustomerRepositoryPostgres implements ICustomerRepository {
-  async findCustomerById(id: string): Promise<ICustomer> {
+  async findCustomerById(id: string): Promise<Customer> {
     return await Customer.findByPk(id);
   }
   async createCustomer({
@@ -11,13 +11,28 @@ class CustomerRepositoryPostgres implements ICustomerRepository {
     lastName,
     role,
     email,
-  }: Partial<ICustomer>): Promise<ICustomer> {
+  }: Partial<ICustomer>): Promise<Customer> {
     const customer = await Customer.create({
       firstName,
       lastName,
       role,
       email,
     });
+    return customer;
+  }
+
+  async updateCustomer({
+    id,
+    firstName,
+    lastName,
+    role,
+    email,
+  }: Partial<ICustomer>): Promise<Customer | null> {
+    const customer = await Customer.findByPk(id);
+    if (!customer) {
+      return null;
+    }
+    await customer.update({ firstName, lastName, role, email });
     return customer;
   }
 }

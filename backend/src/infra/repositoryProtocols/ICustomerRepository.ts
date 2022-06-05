@@ -1,4 +1,5 @@
 import { ICustomer } from "./../../entities/ICustomer";
+
 export interface ICustomerRepository {
   findCustomerById(id: string): Promise<ICustomer>;
   createCustomer({
@@ -7,4 +8,11 @@ export interface ICustomerRepository {
     role,
     email,
   }: Partial<ICustomer>): Promise<ICustomer>;
+  updateCustomer({
+    id,
+    firstName,
+    lastName,
+    role,
+    email,
+  }: Partial<ICustomer>): Promise<ICustomer | null>;
 }

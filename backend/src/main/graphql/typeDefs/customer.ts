@@ -11,21 +11,30 @@ export default gql`
       lastName: String!
       role: String!
       email: String!
-      # planId: String!
-      # paymentGatewayId: String!
+      planId: String!
+      paymentGatewayId: String!
+    ): Customer
+    updateCustomer(
+      id: ID!
+      firstName: String
+      lastName: String
+      role: String
+      email: String
+      planId: String
+      paymentGatewayId: String
     ): Customer
   }
 
   type Customer {
-    id: ID
-    firstName: String
-    lastName: String
-    role: String
-    email: String
-    createdAt: String
-    updatedAt: String
-    endsAt: String
+    id: ID!
+    firstName: String!
+    lastName: String!
+    role: String!
+    email: String!
+    createdAt: String!
+    updatedAt: String!
+    endsAt: String!
     deletedAt: String
-    # subscription: Subscription
+    subscription: Subscription
   }
 `;
