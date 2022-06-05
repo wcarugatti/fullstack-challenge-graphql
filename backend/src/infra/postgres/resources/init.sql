@@ -52,11 +52,10 @@ VALUES
   ('plan2_1', 'Adventurer', 1, 108.00),
   ('plan2_2', 'Adventurer', 2, 1231.20),
   ('plan3_1', 'Super Star', 1, 325.00),
-  ('plan3_2', 'Super Star', 2, 3705.00)
+  ('plan3_2', 'Super Star', 2, 3705.00);
 
 INSERT INTO
   "payment_gateways"
 VALUES
   ('pg1', 'Stripe'),
-  ('pg2', 'PayPal')
-  
+  ('pg2', 'PayPal');
