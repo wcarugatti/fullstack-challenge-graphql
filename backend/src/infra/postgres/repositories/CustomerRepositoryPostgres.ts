@@ -1,8 +1,8 @@
 import { ICustomer } from "../../../entities/ICustomer";
-import { ICustomerRepository } from "./../../repositoryProtocols/ICustomerRepository";
-import Customer from "./../models/Customer.model";
+import { ICustomerRepository } from "../../repositoryProtocols/ICustomerRepository";
+import Customer from "../models/Customer.model";
 
-class CustomerRepository implements ICustomerRepository {
+class CustomerRepositoryPostgres implements ICustomerRepository {
   async findCustomerById(id: string): Promise<ICustomer> {
     return await Customer.findByPk(id);
   }
@@ -22,4 +22,4 @@ class CustomerRepository implements ICustomerRepository {
   }
 }
 
-export default new CustomerRepository();
+export default new CustomerRepositoryPostgres();
