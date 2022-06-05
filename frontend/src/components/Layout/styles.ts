@@ -6,9 +6,13 @@ export const Container = styled.div`
 `;
 
 export const Page = styled.div`
+  margin-left: 75px;
   flex: 1;
   display: flex;
   flex-direction: column;
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
 `;
 
 export const PageContent = styled.div`

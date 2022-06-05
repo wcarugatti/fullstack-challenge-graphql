@@ -8,19 +8,22 @@ export const Container = styled.div`
   padding-bottom: 15px;
   height: 100%;
   width: 75px;
-
+  position: fixed;
   background-color: var(--dark-purple);
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+
 `;
 
 export const SideBarIcons = styled.div`
-
   display: flex;
   flex-direction: column;
   padding-top: 15px;
 
-  svg{
+  svg {
     margin-top: 15px;
   }
-  flex: 1
-
-`
+  flex: 1;
+`;
