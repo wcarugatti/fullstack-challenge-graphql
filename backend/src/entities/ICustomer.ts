@@ -6,5 +6,5 @@ export interface ICustomer {
   email: string;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 }

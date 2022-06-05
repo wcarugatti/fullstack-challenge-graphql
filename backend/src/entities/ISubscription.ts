@@ -6,5 +6,5 @@ export interface ISubscription {
   createdAt: Date;
   updatedAt: Date;
   endsAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 }
