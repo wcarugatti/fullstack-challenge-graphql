@@ -16,11 +16,14 @@ export default createGlobalStyle`
     height: 100%;
   }
 
-  
+  .MuiAutocomplete-noOptions{
+    display: none;
+  }
 
   :root {
     --dark-purple: #2b1337;
     --light-gray: #f7f7f7;
+    --soft-black: rgba(0, 0, 0, 0.87);
     --primary: #621ccb;
   }
 
