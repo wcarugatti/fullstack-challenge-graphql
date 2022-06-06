@@ -23,7 +23,7 @@ export default gql`
       email: String
       planId: String
       paymentGatewayId: String
-    ): String
+    ): Customer
     removeCustomer(id: ID!): removedCustomer
   }
 
@@ -39,7 +39,6 @@ export default gql`
     email: String!
     createdAt: String!
     updatedAt: String!
-    endsAt: String!
     deletedAt: String
     subscription: Subscription
   }
