@@ -1,5 +1,3 @@
 import { InMemoryCache } from "@apollo/client";
 
-export default new InMemoryCache({
-  
-})
+export default new InMemoryCache();
