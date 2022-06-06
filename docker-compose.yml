@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   postgres:
     image: postgres:14.1-alpine
@@ -6,7 +6,7 @@ services:
       - ./postgres/.env
     restart: always
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - ./backend/src/infra/postgres/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db:/var/lib/postgresql/data
@@ -14,9 +14,19 @@ services:
     build:
       context: ./backend
     restart: always
+    env_file:
+      - ./backend/.env
     depends_on:
       - postgres
     ports:
-      - '5000:5000'
+      - "5000:5000"
+  frontend:
+    restart: always
+    build:
+      context: ./frontend
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:3000"
 volumes:
   db:
