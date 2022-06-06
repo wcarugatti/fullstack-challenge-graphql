@@ -4,6 +4,8 @@
 
 FullStack Application made using GraphQL, Apollo Server, postgreSQL, Sequelize, Docker, Typescript and NodeJs for the Backend, ReactJS, MaterialUI and Apollo Client for the Frontend.
 
+![autocomplete_print1](https://user-images.githubusercontent.com/13296861/172158002-f9456048-1aa9-4631-8659-2ab080b52a9d.png)
+
 ## Getting Started
 
 - Run the project with `docker-compose up`.
