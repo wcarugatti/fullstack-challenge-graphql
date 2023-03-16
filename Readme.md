@@ -1,4 +1,6 @@
-# Scopio Challenge
+# Challenge
+
+This was a challenge to make a customer management system, where you can create, update, delete and list customers using GraphQL.
 
 ## About
 
